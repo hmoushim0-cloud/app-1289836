@@ -27,6 +27,8 @@ fun HomeScreen(
     onItemClick: (WarshaNowItem) -> Unit
 ) {
     val categories = listOf("الكل", "الخدمات الرئيسية", "المراقبة الحية", "التقارير الضريبية", "الإعدادات")
+    val defaultPeripheral = "Mada Contactless EMV L2 NFC + GPS Dispatch"
+    val activePeripheralName = state.telemetry?.peripheralName ?: defaultPeripheral
 
     Column(
         modifier = Modifier
@@ -36,7 +38,7 @@ fun HomeScreen(
     ) {
         // Header
         Column {
-            Text("تطبيق ورشة فوري — لاعب روبلكس لتسجيل لقطات لعب", fontSize = 22.sp, fontWeight = FontWeight.Black, color = BrandTextPrimary)
+            Text("تطبيق ورشة فوري - منصة الورش المتنقلة وصيانة المركبات", fontSize = 22.sp, fontWeight = FontWeight.Black, color = BrandTextPrimary)
             Text("منظومة services المتكاملة مع ربط Mada Contactless EMV L2 NFC + GPS Dispatch", fontSize = 12.sp, color = BrandTextSecondary)
         }
 
@@ -52,7 +54,7 @@ fun HomeScreen(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Column(modifier = Modifier.weight(1f)) {
-                    Text("العتاد الحي: ${state.telemetry?.peripheralName ?: 'Mada Contactless EMV L2 NFC + GPS Dispatch'}", fontWeight = FontWeight.Bold, color = BrandPrimary, fontSize = 13.sp)
+                    Text("العتاد الحي: $activePeripheralName", fontWeight = FontWeight.Bold, color = BrandPrimary, fontSize = 13.sp)
                     Text(state.telemetry?.liveReading ?: "Mada Contactless EMV L2 NFC + GPS Dispatch: ONLINE | READY", fontSize = 11.sp, color = BrandTextSecondary)
                 }
                 Badge(containerColor = BrandPrimary) {
